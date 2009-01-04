@@ -7,11 +7,19 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/josevalim/rails-footnotes"
   s.description = "Every Rails page has footnotes that gives information about your application and links back to your editor."
   s.has_rdoc = true
-  s.authors  = [ "José Valim" ]
+  s.bindir   = 'bin'
+  s.executables = [
+    'txmt_handler',
+    'rails-footnotes-linux-configure'
+  ]
+  s.authors  = [ "José Valim", "Alexandre da Silva" ]
   s.files    = [
     "MIT-LICENSE",
     "README",
     "Rakefile",
+    "bin/txmt_handler",
+    "bin/rails-footnotes-linux-configure",
+    "bin/linux_install.sh",
     "lib/rails-footnotes.rb",
     "lib/rails-footnotes/backtracer.rb",
     "lib/rails-footnotes/footnotes.rb",

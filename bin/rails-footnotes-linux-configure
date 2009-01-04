@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+# Copyright (C) 2008 - 20009 - Alexandre da Silva <simpsomboy@gmail.com>
+# TextMate Url Handler for Gedit - Configuration Script
+system "/usr/bin/gconftool-2 -s -t string /desktop/gnome/url-handlers/txmt/command 'txmt_handler \"%s\"'"
+system "/usr/bin/gconftool-2 -s -t bool /desktop/gnome/url-handlers/txmt/enabled true"
