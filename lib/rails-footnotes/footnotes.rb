@@ -113,7 +113,7 @@ module Footnotes
 
     protected
       def valid?
-        performed_render? && first_render? && valid_format? && valid_content_type? && @body.is_a?(String) && !component_request? && !xhr?
+        performed_render? && valid_format? && valid_content_type? && @body.is_a?(String) && !component_request? && !xhr?
       end
 
       def add_footnotes_without_validation!
@@ -131,10 +131,6 @@ module Footnotes
 
       def performed_render?
         @controller.instance_variable_get(:@performed_render)
-      end
-
-      def first_render?
-        @template.instance_variable_get(:@_first_render)
       end
 
       def valid_format?
@@ -187,16 +183,43 @@ module Footnotes
           #{links}
           #{content}
           <script type="text/javascript">
-            function footnotes_close(){
-              #{close unless @@multiple_notes}
-            }
-            function footnotes_toogle(id){
-              s = document.getElementById(id).style;
-              before = s.display;
-              footnotes_close();
-              s.display = (before != 'block') ? 'block' : 'none'
-              location.href = '#footnotes_debug';
-            }
+            var Footnotes = function() {
+
+              function hideAll(){
+                #{close unless @@multiple_notes}
+              }
+              
+              function hideAllAndToggle(id) {
+                hideAll();
+                toggle(id)
+              }  
+              
+              function toggle(id){
+                var el = document.getElementById(id);
+                if (el.style.display == 'none') {
+                  Footnotes.show(el);
+                } else {
+                  Footnotes.hide(el);
+                }
+              
+                location.href = '#footnotes_debug';
+              }
+            
+              function show(element) {
+                element.style.display = 'block'
+              }
+            
+              function hide(element) {
+                element.style.display = 'none'
+              }
+
+              return {
+                show: show,
+                hide: hide,
+                toggle: toggle,
+                hideAllAndToggle: hideAllAndToggle
+              }
+            }();
             /* Additional Javascript */
             #{@notes.map(&:javascript).compact.join("\n")}
           </script>
@@ -266,7 +289,7 @@ module Footnotes
       # Helper that creates the javascript code to close the note
       #
       def close_helper(note)
-        "document.getElementById('#{note.to_sym}_debug_info').style.display = 'none'\n"
+        "Footnotes.hide(document.getElementById('#{note.to_sym}_debug_info'));\n"
       end
 
       # Helper that creates the link and javascript code when note is clicked
@@ -275,7 +298,7 @@ module Footnotes
         onclick = note.onclick
         unless href = note.link
           href = '#'
-          onclick ||= "footnotes_toogle('#{note.to_sym}_debug_info');return false;" if note.has_fieldset?
+          onclick ||= "Footnotes.hideAllAndToggle('#{note.to_sym}_debug_info');return false;" if note.has_fieldset?
         end
 
         "<a href=\"#{href}\" onclick=\"#{onclick}\">#{note.title}</a>"
