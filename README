@@ -51,14 +51,9 @@ Instalation for Linux
 
 If you are running Linux and using gedit as default editor you can use rails-footnotes
 
-The first time you need to configure the footnotes, note that you only need to do this once, in other projects you can just require the tem or use it as a plugin.
+The first time you need to configure the footnotes, note that you only need to do this once, in other projects you can just require the gem.
 
-If you installed as a plugin:
-
-    cd vendor/plugins/footnotes/
-    sh linux_install.sh
-
-If you installed and configured as a gem just run with your user (without sudo):
+After normal gem installation described above, in a terminal run (without sudo):
 
     rails-footnotes-linux-configure
 
@@ -66,8 +61,6 @@ After theese steps you should be able to click on links created by footnotes plu
 
 
 * If for some reason urls not work just after instalation, try to refresh your gnome session (logout and login again).
-* If you use firefox 2 or older, see Usage section to get more information about registering a url handler.
-
 
 Configuration
 -------------
