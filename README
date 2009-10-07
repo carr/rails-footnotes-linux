@@ -1,11 +1,14 @@
 Rails Footnotes
 License: MIT
-Version: 3.4.1
+Version: 3.6.2
 
 You can also read this README in pretty html at the GitHub project Wiki page
 
-  http://github.com/josevalim/rails-footnotes/wikis/home
+  http://wiki.github.com/josevalim/rails-footnotes
 
+You may want to see this blog post about Linux Version
+
+  http://blog.siverti.com.br/2008/11/29/rails-footnotes-full-linux-support-footnotes-for-linux/
 
 Description
 -----------
@@ -21,24 +24,31 @@ your backtrace lines.
 Installation
 ------------
 
+If you are running Linux and using gedit as default editor you can use rails-footnotes
+
 Install Rails Footnotes is very easy. If you are running on Rails 2.3 just run
 the following:
 
    gem sources -a http://gems.github.com
-   sudo gem install josevalim-rails-footnotes
+   sudo gem install lexrupy-rails-footnotes-linux
+
+
+After normal gem installation described above, in a terminal run (without sudo):
+
+    rails-footnotes-linux-configure
 
 In RAILS_ROOT/config/environments/development.rb (yes, you want it only in development):
 
-  config.gem "josevalim-rails-footnotes",  :lib => "rails-footnotes", :source => "http://gems.github.com"
+  config.gem "lexrupy-rails-footnotes-linux",  :lib => "rails-footnotes", :source => "http://gems.github.com"
 
 If you want it as plugin, just do:
 
-   script/plugin install git://github.com/josevalim/rails-footnotes.git
+   script/plugin install git://github.com/lexrupy/rails-footnotes.git
 
 If you are running on Rails 2.2 or Rails 2.1 you should do:
 
     cd myapp
-    git clone git://github.com/josevalim/rails-footnotes.git
+    git clone git://github.com/lexrupy/rails-footnotes.git vendor/plugins/rails-footnotes
     cd vendor/plugins/rails-footnotes
     git checkout VERSION_NUMBER
     rm -rf ./.git
@@ -46,21 +56,22 @@ If you are running on Rails 2.2 or Rails 2.1 you should do:
 Where you should replace VERSION_NUMBER for "v3.3.2" for Rails 2.2 and "v3.2.2"
 for Rails 2.1 (without the quotes).
 
-Instalation for Linux
----------------------
 
-If you are running Linux and using gedit as default editor you can use rails-footnotes
-
-The first time you need to configure the footnotes, note that you only need to do this once, in other projects you can just require the gem.
-
-After normal gem installation described above, in a terminal run (without sudo):
+Note that if you want to use as a plugin, you still need to run the command:
 
     rails-footnotes-linux-configure
+
+You only need to do this once, in other projects you can just require the gem or
+install the plugin.
+
 
 After theese steps you should be able to click on links created by footnotes plugin and Gedit should open. If you use Firefox 3 or newer, first time you click on a link it will ask you a confirmation to open txmt url with the txmt_handler, click yes and it's all done.
 
 
 * If for some reason urls not work just after instalation, try to refresh your gnome session (logout and login again).
+
+
+* After a updating the gem, please run the configure command again.
 
 Configuration
 -------------
@@ -69,7 +80,7 @@ If you are not using Textmate as text editor, in your environment.rb or
 in an initializer do:
 
   if defined?(Footnotes)
-    Footnotes::Filter.prefix = 'txmt://open?url=file://%s&line=%d&column=%d'
+    Footnotes::Filter.prefix = 'txmt://open?url=file://%s&amp;line=%d&amp;column=%d'
   end
 
 Where you are going to choose a prefix compatible with your text editor. The %s is
@@ -143,21 +154,33 @@ Then put in your environment:
   Footnotes::Filter.notes += [:current_user]
 
 
+Colaborators
+------------
+
+* Leon Li         - http://github.com/scorpio
+* Keenan Brock    - http://github.com/kbrock
+* Ivan Storck     - http://github.com/ivanoats
+* Kris Chamber    - http://github.com/kristopher
+
+
 Bugs and Feedback
 -----------------
 
 If you discover any bugs, please send an e-mail to jose.valim@gmail.com
-If you just want to give some positive feedback or drop a line, that's fine too! =)
+If you just want to give some positive feedback or drop a line, that's fine too!
 
-Copyright (c) 2009 José Valim
-http://www.pagestacker.com/
+Copyright (c) 2009 José Valim (jose.valim@gmail.com)
 http://josevalim.blogspot.com/
+
+
+For linux version please fill bugs at github issues page.
 
 
 Version 2.0
 -----------
 
-Until version 2.0, this plugin was created and maintained by:
+This plugin was created and maintained until version 2.0 by Duane Johnson:
 
-Duane Johnson (duane.johnson@gmail.com)
+Copyright (c) 2006 InquiryLabs, Inc.
 http://blog.inquirylabs.com/
+
