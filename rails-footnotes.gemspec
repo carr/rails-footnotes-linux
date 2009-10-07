@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name     = "rails-footnotes"
+  s.name     = "rails-footnotes-linux"
   s.version  = "3.6.2"
   s.date     = "2009-07-12"
   s.summary  = "Every Rails page has footnotes that gives information about your application and links back to your editor."
@@ -51,3 +51,4 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--main", "README"]
   s.extra_rdoc_files = ["README"]
 end
+
