@@ -29,9 +29,11 @@ If you are running Linux and using gedit as default editor you can use rails-foo
 Install Rails Footnotes is very easy. If you are running on Rails 2.3 just run
 the following:
 
-   gem sources -a http://gems.github.com
-   sudo gem install lexrupy-rails-footnotes-linux
+   gem sources -a http://gemcutter.org
+   sudo gem install rails-footnotes-linux
 
+* Note if you already have gemcutter gem installed and configured you don't need
+  to execute the first command.
 
 After normal gem installation described above, in a terminal run (without sudo):
 
