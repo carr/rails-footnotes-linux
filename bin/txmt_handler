@@ -2,6 +2,7 @@
 # Copyright (C) 2008 - Alexandre da Silva <simpsomboy@gmail.com>
 # TextMate Url Handler for Gedit
 path = ARGV[0]
-match, file, line, line_number, column, column_number = *path.to_s.match(/^txmt:\/\/open\?url=file:\/\/(.*?)(&line=([0-9]*))?(&column=([0-9]*))?$/)
+match, optional_slash, file, line, line_number, column, column_number = *path.to_s.match(/^txmt:\/\/open(\/)*\?url=file:\/\/(.*?)(&line=([0-9]*))?(&column=([0-9]*))?$/)
 line_number = 0 if line_number.nil?
 system("gedit #{file} +#{line_number}")
+
